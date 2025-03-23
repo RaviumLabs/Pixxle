@@ -14,6 +14,12 @@ $onlyIf[$hasAnyPerms[$guildID;$authorID;Administrator;ManageGuild]==true;$intera
   $color[${configuration.colors.error}]
 ]]
 
+$onlyIf[$getGuildVar[AutoMod_Enabled;$guildID;false]==true;$interaction[
+  $ephemeral
+  $description[$crossmark The Auto-Mod system is disabled in this server. Use </automod enable:1352943921839210526> to enable it.]
+  $color[${configuration.colors.error}]
+]]
+
 $let[BlockedLinks;$getGuildVar[AutoMod_BlockedLinks;$guildID;]]
 $arrayLoad[BlockedLinks;//SEP//;$getGuildVar[AutoMod_BlockedLinks;$guildID;]]
 
