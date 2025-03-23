@@ -36,13 +36,7 @@ $interactionReply[
   $color[${configuration.colors.main}]
 
   $footer[Auto-Mod : Listing Blocked Links]
-
-  $addActionRow
-    $addButton[testd;;Secondary;⬅️]
-    $addButton[testdsdsd;Page 1;Secondary;;true]
-    $addButton[testdss;;Secondary;➡️]
-]
-`,
+]`,
 };
 
 export default ApplicationCommand;
