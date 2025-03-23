@@ -1,0 +1,27 @@
+{
+  "name": "project-name",
+  "version": "1.0.0",
+  "description": "This is a project that uses a TypeScript Bot Template.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node -r tsconfig-paths/register dist/index.js"
+  },
+  "devDependencies": {
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@tryforge/forge.canvas": "^1.2.1",
+    "@tryforge/forge.db": "^2.0.9",
+    "@tryforge/forgescript": "github:tryforge/ForgeScript#dev",
+    "dotenv": "^16.4.7",
+    "path": "^0.12.7",
+    "sqlite3": "^5.1.7"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "sqlite3"
+    ]
+  }
+}
