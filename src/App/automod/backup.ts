@@ -10,7 +10,7 @@ const ApplicationCommand: IApplicationCommandData = {
         type: 7,
         name: 'channel',
         description: 'Specify the channel to store flagged messages.',
-        required: false,
+        required: true,
         channel_types: [0, 11, 12]
       }
     ]
