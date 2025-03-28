@@ -27,7 +27,9 @@ const client: ForgeClient = new ForgeClient({
         'shardReady',
         'shardError',
         'shardReconnecting',
-        'shardResume'
+        'shardResume',
+        'roleDelete',
+        'channelDelete'
     ],
     // Extensions
     extensions: [
