@@ -10,7 +10,7 @@ const ApplicationCommand: IApplicationCommandData = {
       {
         type: 3,
         name: 'domain',
-        description: 'The domain to block (e.g: https://google.com).',
+        description: 'The domain to block (e.g: https://google.com/).',
         required: true
       }
     ]
