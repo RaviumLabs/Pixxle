@@ -8,7 +8,7 @@ const ApplicationCommand: IApplicationCommandData = {
     description: 'Apply back Auto-Mod actions to specific excluded roles.',
     options: [
       {
-        type: 7,
+        type: 8,
         name: 'role',
         description: 'The role to restrict.',
         required: true
