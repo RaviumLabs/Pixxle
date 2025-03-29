@@ -18,7 +18,7 @@ $arrayForEach[BlockedLinks;Link;
       $description[$crossmark <@$authorID> The link you have sent is blocked by the Auto-Mod.]
       $color[${configuration.colors.error}]
     ;true]]
-    $setTimeout[$!deleteMessages[$channelID;$get[WarninMessageID]];5000]
+    $setTimeout[$!deleteMessages[$channelID;$get[WarninMessageID]];4000]
   ;]
 ]`,
 };
