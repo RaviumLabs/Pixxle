@@ -1,7 +1,7 @@
 {
-  "name": "project-name",
-  "version": "1.0.0",
-  "description": "This is a project that uses a TypeScript Bot Template.",
+  "name": "pixxle",
+  "version": "0.0.5",
+  "description": "Pixxle is an unique and feature-rich Discord application for moderation, management and entertainment purposes.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
