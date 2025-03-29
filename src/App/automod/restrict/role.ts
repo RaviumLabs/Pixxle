@@ -4,15 +4,14 @@ import configuration from '../../../configuration.json';
 const ApplicationCommand: IApplicationCommandData = {
   data: {
     type: 1,
-    name: 'restrict',
-    description: 'Apply Auto-Mod actions to specific channels.',
+    name: 'role',
+    description: 'Apply stricter Auto-Mod actions to specific roles.',
     options: [
       {
         type: 7,
-        name: 'channel',
-        description: 'The channel to restrict.',
-        required: true,
-        channel_types: [0, 11, 12]
+        name: 'role',
+        description: 'The role to restrict.',
+        required: true
       }
     ]
   },
@@ -29,28 +28,28 @@ $onlyIf[$getGuildVar[AutoMod_Enabled;$guildID;false]==true;$interactionReply[
   $color[${configuration.colors.error}]
 ]]
 
-$onlyIf[$guildChannelExists[$guildID;$option[channel]]==true;$interactionReply[
+$onlyIf[$roleExists[$guildID;$option[role]]==true;$interactionReply[
   $ephemeral
-  $description[$crossmark The channel you have provided does not exist in this server.]
+  $description[$crossmark The role you have provided does not exist in this server.]
   $color[${configuration.colors.error}]
 ]]
 
-$let[ExcludedChannels;$getGuildVar[AutoMod_ExcludedChannels;$guildID;]]
-$arrayLoad[ExcludedChannels;//SEP//;$get[ExcludedChannels]]
+$let[ExcludedRoles;$getGuildVar[AutoMod_ExcludedRoles;$guildID;]]
+$arrayLoad[ExcludedRoles;//SEP//;$get[ExcludedRoles]]
   
-$onlyIf[$checkContains[$getGuildVar[AutoMod_ExcludedChannels;$guildID;];$option[channel]]==true;$interactionReply[
+$onlyIf[$checkContains[$getGuildVar[AutoMod_ExcludedRoles;$guildID;];$option[channel]]==true;$interactionReply[
   $ephemeral
-  $description[$crossmark The channel you have provided is not excluded.]
+  $description[$crossmark The role you have provided is not excluded.]
   $color[${configuration.colors.error}]
 ]]
   
-$!jsonDelete[ExcludedChannels;$arrayIndexOf[ExcludedChannels;$option[channel]]]
+$!jsonDelete[ExcludedRoles;$arrayIndexOf[ExcludedRoles;$option[channel]]]
 
-$setGuildVar[AutoMod_ExcludedChannels;$arrayJoin[ExcludedChannels;//SEP//];$guildID]
+$setGuildVar[AutoMod_ExcludedRoles;$arrayJoin[ExcludedRoles;//SEP//];$guildID]
   
 $interactionReply[
   $ephemeral
-  $description[$checkmark The channel you have provided has successfully been restricted with the Auto-Mod actions.]
+  $description[$checkmark The role you have provided has successfully been restricted with the Auto-Mod actions.]
   $color[${configuration.colors.success}]
 ]`,
 };

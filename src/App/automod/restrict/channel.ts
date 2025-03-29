@@ -4,13 +4,13 @@ import configuration from '../../../configuration.json';
 const ApplicationCommand: IApplicationCommandData = {
   data: {
     type: 1,
-    name: 'exclude',
-    description: 'Exclude specific channels from Auto-Mod actions.',
+    name: 'channel',
+    description: 'Apply Auto-Mod actions to specific channels.',
     options: [
       {
         type: 7,
         name: 'channel',
-        description: 'The channel to exclude.',
+        description: 'The channel to restrict.',
         required: true,
         channel_types: [0, 11, 12]
       }
@@ -36,27 +36,21 @@ $onlyIf[$guildChannelExists[$guildID;$option[channel]]==true;$interactionReply[
 ]]
 
 $let[ExcludedChannels;$getGuildVar[AutoMod_ExcludedChannels;$guildID;]]
-
-$onlyIf[$checkContains[$get[ExcludedChannels];$option[channel]]==false;$interactionReply[
+$arrayLoad[ExcludedChannels;//SEP//;$get[ExcludedChannels]]
+  
+$onlyIf[$checkContains[$getGuildVar[AutoMod_ExcludedChannels;$guildID;];$option[channel]]==true;$interactionReply[
   $ephemeral
-  $description[$crossmark The channel you have provided is already excluded.]
+  $description[$crossmark The channel you have provided is not excluded.]
   $color[${configuration.colors.error}]
 ]]
-
-$arrayLoad[ExcludedChannels;//SEP//;$get[ExcludedChannels]]
-$arrayPush[ExcludedChannels;$option[channel]]
-
-$ifx[
-  $if[$arrayAt[ExcludedChannels;0]==;
-    $arrayShift[ExcludedChannels]
-  ]
-]
+  
+$!jsonDelete[ExcludedChannels;$arrayIndexOf[ExcludedChannels;$option[channel]]]
 
 $setGuildVar[AutoMod_ExcludedChannels;$arrayJoin[ExcludedChannels;//SEP//];$guildID]
-
+  
 $interactionReply[
   $ephemeral
-  $description[$checkmark The channel you have provided has successfully been excluded from Auto-Mod actions.]
+  $description[$checkmark The channel you have provided has successfully been restricted with the Auto-Mod actions.]
   $color[${configuration.colors.success}]
 ]`,
 };

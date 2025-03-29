@@ -4,7 +4,7 @@ import configuration from '../../../configuration.json';
 const ApplicationCommand: IApplicationCommandData = {
   data: {
     type: 1,
-    name: 'exclude',
+    name: 'role',
     description: 'Exclude specific roles from Auto-Mod actions.',
     options: [
       {
