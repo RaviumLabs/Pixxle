@@ -12,15 +12,6 @@ const ApplicationCommand: IApplicationCommandData = {
         name: 'keyword',
         description: 'The keyword to block.',
         required: true
-      }, {
-        type: 3,
-        name: 'severity',
-        description: 'Add specific keywords to the Auto-Mod filter.',
-        choices: [
-            { name: "Low", value: "low" },
-            { name: "Medium", value: "medium" },
-            { name: "High", value: "high" },
-        ]
       }
     ]
   },
@@ -37,39 +28,30 @@ $onlyIf[$getGuildVar[AutoMod_Enabled;$guildID;false]==true;$interactionReply[
   $color[${configuration.colors.error}]
 ]]
 
-$onlyIf[$isValidLink[$option[domain]]==true;$interactionReply[
+$let[Keyword;$toLowerCase[$option[keyword]]]
+
+$onlyIf[$checkContains[$getGuildVar[AutoMod_BlockedKeywords;$guildID;];$get[Keyword]]==false;$interactionReply[
   $ephemeral
-  $description[$crossmark The link you have provided is not a valid link.]
+  $description[$crossmark The keyword you have provided is already blocked.]
   $color[${configuration.colors.error}]
 ]]
 
-$arrayLoad[Link;://;$option[domain]]
-$arrayLoad[Domain;/;$arrayAt[Link;1]]
+$let[BlockedKeywords;$getGuildVar[AutoMod_BlockedKeywords;$guildID;]]
 
-$let[Domain;$toLowerCase[$arrayAt[Domain;0]]]
-
-$onlyIf[$checkContains[$getGuildVar[AutoMod_BlockedLinks;$guildID;];$get[Domain]]==false;$interactionReply[
-  $ephemeral
-  $description[$crossmark The link you have provided is already blocked.]
-  $color[${configuration.colors.error}]
-]]
-
-$let[BlockedLinks;$getGuildVar[AutoMod_BlockedLinks;$guildID;]]
-
-$arrayLoad[BlockedLinks;//SEP//;$get[BlockedLinks]]
-$arrayPush[BlockedLinks;$get[Domain]]
+$arrayLoad[BlockedKeywords;//SEP//;$get[BlockedKeywords]]
+$arrayPush[BlockedKeywords;$get[Keyword]]
 
 $ifx[
-  $if[$arrayAt[BlockedLinks;0]==;
-    $arrayShift[BlockedLinks]
+  $if[$arrayAt[BlockedKeywords;0]==;
+    $arrayShift[BlockedKeywords]
   ]
 ]
 
-$setGuildVar[AutoMod_BlockedLinks;$arrayJoin[BlockedLinks;//SEP//];$guildID]
+$setGuildVar[AutoMod_BlockedKeywords;$arrayJoin[BlockedKeywords;//SEP//];$guildID]
 
 $interactionReply[
   $ephemeral
-  $description[$checkmark The link you have provided has successfully been blocked by the Auto-Mod.]
+  $description[$checkmark The keyword you have provided has successfully been blocked by the Auto-Mod.]
   $color[${configuration.colors.success}]
 ]`,
 };

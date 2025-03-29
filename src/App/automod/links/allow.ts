@@ -41,7 +41,7 @@ $let[Domain;$toLowerCase[$arrayAt[Domain;0]]]
 $let[BlockedLinks;$getGuildVar[AutoMod_BlockedLinks;$guildID;]]
 $arrayLoad[BlockedLinks;//SEP//;$get[BlockedLinks]]
   
-$onlyIf[$checkContains[$getGuildVar[AutoMod_BlockedLinks;$guildID;];$get[Domain]]==true;$interactionReply[
+$onlyIf[$arrayIncludes[BlockedLinks;$get[Domain]]==true;$interactionReply[
   $ephemeral
   $description[$crossmark The link you have provided not blocked. Use </automod links list:1352943921839210526> to view the list of blocked links.]
   $color[${configuration.colors.error}]

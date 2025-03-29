@@ -11,13 +11,14 @@ $arrayForEach[UserRoles;Role;
   $onlyIf[$includes[$getGuildVar[AutoMod_ExcludedRoles;$guildID;];$env[Role]]==false;]
 ]
 
+$arrayLoad[BlockedKeywords;//SEP//;$getGuildVar[AutoMod_BlockedKeywords;$guildID;]]
+
 $onlyIf[$and[$arrayLength[BlockedKeywords]==1;$arrayAt[BlockedKeywords;0]!=]==true;]
 
-$arrayLoad[BlockedLinks;//SEP//;$getGuildVar[AutoMod_BlockedLinks;$guildID;]]
-$arrayForEach[BlockedLinks;Link;
-  $if[$includes[$message;$env[Link]]==true;$!deleteMessages[$channelID;$messageID]
+$arrayForEach[BlockedKeywords;Keyword;
+  $if[$includes[$message;$env[Keyword]]==true;$!deleteMessages[$channelID;$messageID]
     $let[WarningMessageID;$sendMessage[$channelID;
-      $description[$crossmark <@$authorID> The link you have sent is blocked by the Auto-Mod.]
+      $description[$crossmark <@$authorID> The message you have sent contains a blocked keyword by the Auto-Mod.]
       $color[${configuration.colors.error}]
     ;true]]
     $setTimeout[$!deleteMessages[$channelID;$get[WarningMessageID]];5000]
