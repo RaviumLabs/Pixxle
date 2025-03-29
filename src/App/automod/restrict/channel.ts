@@ -5,7 +5,7 @@ const ApplicationCommand: IApplicationCommandData = {
   data: {
     type: 1,
     name: 'channel',
-    description: 'Apply Auto-Mod actions to specific channels.',
+    description: 'Apply back Auto-Mod actions to specific excluded channels.',
     options: [
       {
         type: 7,
