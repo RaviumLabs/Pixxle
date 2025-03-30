@@ -7,6 +7,8 @@ const configuration_json_1 = __importDefault(require("../../configuration.json")
 const Command = {
     type: "messageCreate",
     code: `
+$onlyIf[$getGuildVar[AutoMod_Enabled;$guildID;false]==true;]
+
 $onlyIf[$includes[$getGuildVar[AutoMod_ExcludedChannels;$guildID;];$channelID]==false;]
 
 $arrayLoad[UserRoles;/;$memberRoles[$guildID;$authorID;/]]
@@ -16,7 +18,7 @@ $arrayForEach[UserRoles;Role;
 
 $arrayLoad[BlockedKeywords;//SEP//;$getGuildVar[AutoMod_BlockedKeywords;$guildID;]]
 
-$onlyIf[$and[$arrayLength[BlockedKeywords]==1;$arrayAt[BlockedKeywords;0]==]!=true;]
+$onlyIf[$arrayAt[BlockedKeywords;0]!=;]
 
 $arrayForEach[BlockedKeywords;Keyword;
   $if[$includes[$message;$env[Keyword]]==true;

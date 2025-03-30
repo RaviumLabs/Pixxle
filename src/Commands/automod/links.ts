@@ -4,13 +4,16 @@ import configuration from '../../configuration.json';
 const Command: IBaseCommand<CommandType> = {
   type: "messageCreate",
   code: `
+$onlyIf[$getGuildVar[AutoMod_Enabled;$guildID;false]==true;]
+
 $onlyIf[$includes[$getGuildVar[AutoMod_ExcludedChannels;$guildID;];$channelID]==false;]
 
 $arrayLoad[UserRoles;/;$memberRoles[$guildID;$authorID;/]]
 $arrayForEach[UserRoles;Role;
   $onlyIf[$includes[$getGuildVar[AutoMod_ExcludedRoles;$guildID;];$env[Role]]==false;]
 ]
-$onlyIf[$and[$arrayLength[BlockedKeywords]==1;$arrayAt[BlockedKeywords;0]==]!=true;]
+
+$onlyIf[$arrayAt[BlockedKeywords;0]!=;]
 
 $arrayLoad[BlockedLinks;//SEP//;$getGuildVar[AutoMod_BlockedLinks;$guildID;]]
 $arrayForEach[BlockedLinks;Link;
