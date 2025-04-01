@@ -1,1 +1,1 @@
-{"version":3,"file":"roleDelete.js","sourceRoot":"","sources":["../../../src/Commands/Events/roleDelete.ts"],"names":[],"mappings":";;AAGA,MAAM,OAAO,GAA8B;IACzC,IAAI,EAAE,YAAY;IAClB,IAAI,EAAE;;;;;;;;;CASP;CACA,CAAC;AAEF,kBAAe,OAAO,CAAC"}
+{"version":3,"file":"roleDelete.js","sourceRoot":"","sources":["../../../src/Commands/Events/roleDelete.ts"],"names":[],"mappings":";;AAEA,MAAM,OAAO,GAA8B;IACzC,IAAI,EAAE,YAAY;IAClB,IAAI,EAAE;;;;;;;;;CASP;CACA,CAAC;AAEF,kBAAe,OAAO,CAAC"}
