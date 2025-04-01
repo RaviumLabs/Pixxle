@@ -5,7 +5,8 @@ const Command = {
     name: "e",
     code: `
 $onlyIf[$authorID==876801702051856424;]
-$eval[$message]`,
+$eval[$message]
+`,
 };
 exports.default = Command;
 //# sourceMappingURL=eval.js.map
