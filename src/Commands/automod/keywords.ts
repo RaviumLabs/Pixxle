@@ -18,7 +18,7 @@ $arrayLoad[BlockedKeywords;//SEP//;$getGuildVar[AutoMod_BlockedKeywords;$guildID
 $onlyIf[$arrayAt[BlockedKeywords;0]!=;]
 
 $arrayForEach[BlockedKeywords;Keyword;
-  $if[$includes[$message;$env[Keyword]]==true;
+  $if[$includes[$toLowerCase[$message];$env[Keyword]]==true;
   
     $!deleteMessages[$channelID;$messageID]
     

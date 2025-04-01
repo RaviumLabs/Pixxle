@@ -13,11 +13,12 @@ $arrayForEach[UserRoles;Role;
   $onlyIf[$includes[$getGuildVar[AutoMod_ExcludedRoles;$guildID;];$env[Role]]==false;]
 ]
 
-$onlyIf[$arrayAt[BlockedKeywords;0]!=;]
-
 $arrayLoad[BlockedLinks;//SEP//;$getGuildVar[AutoMod_BlockedLinks;$guildID;]]
+
+$onlyIf[$arrayAt[BlockedLinks;0]!=;]
+
 $arrayForEach[BlockedLinks;Link;
-  $if[$includes[$message;$env[Link]]==true;
+  $if[$includes[$toLowerCase[$message];$env[Link]]==true;
   
     $!deleteMessages[$channelID;$messageID]
 
