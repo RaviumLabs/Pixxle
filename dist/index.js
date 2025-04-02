@@ -61,7 +61,7 @@ const client = new forgescript_1.ForgeClient({
     ],
     extensions: [
         new forge_db_1.ForgeDB(),
-        new forge_canvas_1.ForgeCanvas()
+        new forge_canvas_1.ForgeCanvas(),
     ],
     prefixes: [
         '.'

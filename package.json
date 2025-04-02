@@ -12,6 +12,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@tryforge/forge.api": "^1.0.1",
     "@tryforge/forge.canvas": "^1.2.1",
     "@tryforge/forge.db": "^2.0.9",
     "@tryforge/forgescript": "github:tryforge/ForgeScript#dev",

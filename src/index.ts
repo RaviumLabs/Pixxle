@@ -2,11 +2,23 @@
 import { ForgeClient } from '@tryforge/forgescript';
 import { ForgeDB } from '@tryforge/forge.db';
 import { ForgeCanvas } from '@tryforge/forge.canvas';
+// import { ForgeAPI } from '@tryforge/forge.api';
 import * as dotenv from 'dotenv';
 import { join } from 'path';
 
 // Environment variables
 dotenv.config();
+
+// ForgeAPI
+// const API = new ForgeAPI({
+//     port: 3000,
+//     auth: {
+//       type: 0,
+//     },
+// });
+
+// API routes loader
+// API.router.load("./src/Api");
 
 // Define the client configuration
 const client: ForgeClient = new ForgeClient({
@@ -34,7 +46,8 @@ const client: ForgeClient = new ForgeClient({
     // Extensions
     extensions: [
         new ForgeDB(),
-        new ForgeCanvas()
+        new ForgeCanvas(),
+        // API
     ],
     // Prefix
     prefixes: [
