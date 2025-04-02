@@ -1,20 +1,74 @@
 {
   "name": "pixxle",
   "version": "0.0.5",
-  "description": "Pixxle is an unique and feature-rich Discord application for moderation, management and entertainment purposes.",
+  "description": "Pixxle is a unique and feature-rich Discord application for moderation, management, and entertainment purposes.",
   "main": "dist/index.js",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node -r tsconfig-paths/register dist/index.js"
+    "prestart": "npm run build",
+    "start": "node -r tsconfig-paths/register dist/index.js",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts,.js"
   },
+  "keywords": [
+    "forgeScript",
+    "moderation",
+    "feature-rich",
+    "entertainment",
+    "management",
+    "automation",
+    "utility",
+    "multi-purpose",
+    "discord-bot",
+    "logging",
+    "security",
+    "fun",
+    "customization",
+    "protection",
+    "commands",
+    "bot-management",
+    "server-tools",
+    "community",
+    "anti-spam",
+    "advanced-features"
+  ],
+  "author": {
+    "name": "Striatp",
+    "email": "striatp@outlook.com",
+    "url": "https://github.com/striatp"
+  },
+  "contributors": [],
+  "license": "CC BY-NC-ND 4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaviumLabs/Pixxle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RaviumLabs/Pixxle/issues"
+  },
+  "homepage": "https://ravium.org/pixxle",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
+  },
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/Ravium"
+  },
+  "engines": {
+    "node": ">=23.10.0"
+  },
+  "engineStrict": true,
   "devDependencies": {
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "eslint": "^8.50.0"
   },
   "dependencies": {
     "@tryforge/forge.api": "^1.0.1",
-    "@tryforge/forge.canvas": "^1.2.1",
-    "@tryforge/forge.db": "^2.0.9",
+    "@tryforge/forge.canvas": "github:tryforge/ForgeCanvas#dev",
+    "@tryforge/forge.db": "github:tryforge/ForgeDB#dev",
     "@tryforge/forgescript": "github:tryforge/ForgeScript#dev",
     "dotenv": "^16.4.7",
     "path": "^0.12.7",

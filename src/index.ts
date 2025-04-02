@@ -2,7 +2,7 @@
 import { ForgeClient } from '@tryforge/forgescript';
 import { ForgeDB } from '@tryforge/forge.db';
 import { ForgeCanvas } from '@tryforge/forge.canvas';
-// import { ForgeAPI } from '@tryforge/forge.api';
+import { ForgeAPI } from '@tryforge/forge.api';
 import * as dotenv from 'dotenv';
 import { join } from 'path';
 
@@ -10,15 +10,13 @@ import { join } from 'path';
 dotenv.config();
 
 // ForgeAPI
-// const API = new ForgeAPI({
-//     port: 3000,
-//     auth: {
-//       type: 0,
-//     },
-// });
-
-// API routes loader
-// API.router.load("./src/Api");
+const API = new ForgeAPI({
+    port: 3000,
+    logLevel: 0,
+    auth: {
+      type: 0,
+    },
+});
 
 // Define the client configuration
 const client: ForgeClient = new ForgeClient({
@@ -47,7 +45,7 @@ const client: ForgeClient = new ForgeClient({
     extensions: [
         new ForgeDB(),
         new ForgeCanvas(),
-        // API
+        API
     ],
     // Prefix
     prefixes: [
@@ -59,6 +57,9 @@ const client: ForgeClient = new ForgeClient({
 client.functions.load(join(__dirname, 'Functions'));
 client.commands.load('./dist/Commands');
 client.applicationCommands.load('./dist/App');
+
+// API routes loader
+API.router.load("./dist/Routes");
 
 // Client login
 const token: string = process.env.DISCORD_TOKEN || '';

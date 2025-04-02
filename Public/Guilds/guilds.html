@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilds</title>
+    <link href="/guilds.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+    <h1 id="guildTitle">
+        <img id="guildIcon" src="" alt="Guild Icon">
+        Loading...
+    </h1>
+
+    <script>
+        async function getData() {
+            const url = "http://localhost:3000/api/guilds";
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const json = await response.json();
+                
+                if (json.guilds.length > 0) {
+                    const biggestGuild = json.guilds[0]; 
+
+                    const title = document.getElementById("guildTitle");
+                    title.innerHTML = `<img id="guildIcon" src="${biggestGuild.guildicon || 'https://via.placeholder.com/50'}" alt="Guild Icon"> ${biggestGuild.name}`;
+                }
+
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        getData();
+    </script>
+</body>
+</html>
