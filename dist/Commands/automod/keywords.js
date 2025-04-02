@@ -8,7 +8,6 @@ const Command = {
     type: "messageCreate",
     code: `
 $onlyIf[$getGuildVar[AutoMod_Enabled;$guildID;false]==true;]
-
 $onlyIf[$includes[$getGuildVar[AutoMod_ExcludedChannels;$guildID;];$channelID]==false;]
 
 $arrayLoad[UserRoles;/;$memberRoles[$guildID;$authorID;/]]
@@ -17,7 +16,6 @@ $arrayForEach[UserRoles;Role;
 ]
 
 $arrayLoad[BlockedKeywords;//SEP//;$getGuildVar[AutoMod_BlockedKeywords;$guildID;]]
-
 $onlyIf[$arrayAt[BlockedKeywords;0]!=;]
 
 $arrayForEach[BlockedKeywords;Keyword;
