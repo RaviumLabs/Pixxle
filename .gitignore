@@ -25,6 +25,7 @@ pnpm-lock.yaml*
 # Database files
 forge.db
 *.db
+/database/
 
 # OS-specific files
 .DS_Store
