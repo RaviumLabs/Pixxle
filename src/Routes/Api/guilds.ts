@@ -1,5 +1,3 @@
-import { join } from 'path';
-
 module.exports = {
     url: "/api/guilds",
     method: "GET",
